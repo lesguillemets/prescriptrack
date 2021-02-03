@@ -1,6 +1,20 @@
 use chrono::NaiveDate;
+pub mod renderer;
+
 pub fn hello() {
     println!("Hello, world");
+}
+
+#[derive(Debug)]
+pub struct Prescription {
+    medication: Medication,
+    doses: Vec<(Dosage, NaiveDate, Comment)>,
+}
+
+impl Prescription {
+    fn add_usage(&mut self, dosage: Dosage, date: NaiveDate, comment: Comment) {
+        self.doses.push((dosage, date, comment));
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
@@ -25,17 +39,5 @@ impl Dosage {
             Dosage::AfterMeal(doses) => doses.iter().sum(),
             Dosage::Pause => 0.0,
         }
-    }
-}
-
-#[derive(Debug)]
-pub struct Prescription {
-    medication: Medication,
-    doses: Vec<(Dosage, NaiveDate, Comment)>,
-}
-
-impl Prescription {
-    fn add_usage(&mut self, dosage: Dosage, date: NaiveDate, comment: Comment) {
-        self.doses.push((dosage, date, comment));
     }
 }

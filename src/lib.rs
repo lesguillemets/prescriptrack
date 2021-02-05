@@ -12,21 +12,27 @@ pub struct Prescription {
 }
 
 impl Prescription {
-    fn add_usage(&mut self, dosage: Dosage, date: NaiveDate, comment: Comment) {
+    pub fn new(med: Medication) -> Self {
+        Prescription {
+            medication: med,
+            doses: vec![],
+        }
+    }
+    pub fn add_usage(&mut self, dosage: Dosage, date: NaiveDate, comment: Comment) {
         self.doses.push((dosage, date, comment));
     }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd)]
-struct Medication {
-    name: String,
+pub struct Medication {
+    pub name: String,
 }
 
-type Dose = f64;
-type Comment = String;
+pub type Dose = f64;
+pub type Comment = String;
 
 #[derive(Clone, Debug, PartialEq)]
-enum Dosage {
+pub enum Dosage {
     BeforeMeal([Dose; 4]), // breakfast-lunch-dinner-before_sleep
     AfterMeal([Dose; 4]),
     Pause,

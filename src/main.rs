@@ -1,7 +1,7 @@
 use chrono::NaiveDate;
+use prescriptrack::format::{KText, SimpleText};
 use prescriptrack::renderer::Renderer;
 use prescriptrack::*;
-use renderer::{KTextRenderer, SimpleTextRenderer};
 
 fn main() {
     let meda = Medication {
@@ -23,8 +23,8 @@ fn main() {
         NaiveDate::from_ymd(2021, 1, 17),
         "へらした".to_string(),
     );
-    println!("{}", SimpleTextRenderer.render(&p));
-    println!("{}", KTextRenderer.render(&p));
+    println!("{}", SimpleText.render(&p));
+    println!("{}", KText.render(&p));
 }
 
 fn try_format() {

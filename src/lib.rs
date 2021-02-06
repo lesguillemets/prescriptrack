@@ -1,5 +1,6 @@
 use chrono::NaiveDate;
 pub mod format;
+pub mod parser;
 pub mod renderer;
 
 pub fn hello() {
